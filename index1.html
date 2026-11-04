@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>GreenTrack Activity Logger</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>GreenTrack</h1>
+      <p>Track your daily environmental activities</p>
+    </header>
+
+    <main>
+      <section class="form-container">
+        <h2>Log a New Activity</h2>
+
+        <form id="activityForm">
+          <label for="category">Category</label>
+
+          <select id="category" required>
+            <option value="">Choose a category</option>
+            <option value="Electricity">Electricity</option>
+            <option value="Water">Water</option>
+            <option value="Waste">Waste</option>
+            <option value="Transport">Transport</option>
+          </select>
+
+          <label for="quantity">Quantity</label>
+          <input
+            type="number"
+            id="quantity"
+            placeholder="Enter quantity"
+            min="0.01"
+            step="any"
+            required
+          />
+
+          <label for="unit">Unit</label>
+          <input type="text" id="unit" placeholder="Enter unit" required />
+
+          <label for="date">Date</label>
+          <input type="date" id="date" required />
+
+          <label for="note">Note</label>
+          <textarea id="note" placeholder="Write a note..." rows="3"></textarea>
+
+          <button type="submit">Add Activity</button>
+        </form>
+      </section>
+
+      <section class="activity-container">
+        <h2>Your Activities</h2>
+
+        <p id="emptyMessage">No activities yet — log your first one!</p>
+
+        <div id="activityList"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
