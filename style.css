@@ -101,3 +101,46 @@ button:hover {
   margin-top: 6px;
   color: #555;
 }
+
+/* Edit form styling */
+
+.activity-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.activity-card input,
+.activity-card select,
+.activity-card textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Activity buttons */
+
+.activity-card button {
+  margin-top: 10px;
+  margin-right: 8px;
+  padding: 9px 15px;
+}
+
+/* Edit button */
+
+.activity-card button:first-of-type {
+  background-color: #2879b9;
+}
+
+/* Delete button */
+
+.activity-card button:last-of-type {
+  background-color: #c0392b;
+}
+
+/* Cancel button */
+
+.activity-card form button[type="button"] {
+  background-color: #777;
+}
