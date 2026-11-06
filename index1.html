@@ -54,7 +54,28 @@
 
       <section class="activity-container">
         <h2>Your Activities</h2>
+        <!-- Search activities -->
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search activities..."
+          list="activitySuggestions"
+        />
 
+        <!-- Search suggestions -->
+        <datalist id="activitySuggestions">
+          <option value="Electricity"></option>
+          <option value="Water"></option>
+          <option value="Waste"></option>
+          <option value="Transport"></option>
+        </datalist>
+
+        <select id="sortFilter">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+
+        <div id="activityList"></div>
         <p id="emptyMessage">No activities yet — log your first one!</p>
 
         <div id="activityList"></div>

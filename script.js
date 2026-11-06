@@ -28,6 +28,12 @@ const activityList = document.getElementById("activityList");
 // Select the empty message
 const emptyMessage = document.getElementById("emptyMessage");
 
+//searcin
+const searchInput = document.getElementById("searchInput");
+
+// Select the sorting dropdown
+const sortFilter = document.getElementById("sortFilter");
+
 // Change the heading using JavaScript
 document.querySelector("header h1").textContent = "GreenTrack 🌱";
 
@@ -66,6 +72,15 @@ let activities = loadActivities();
 function saveActivities() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(activities));
 }
+//search input
+searchInput.addEventListener("input", function () {
+  renderActivities();
+});
+
+// Listen for changes in sorting
+sortFilter.addEventListener("change", function () {
+  renderActivities();
+});
 
 // 3. Automatically fill unit based on category
 
@@ -88,11 +103,30 @@ function renderActivities() {
   // Remove the previous displayed activities
   activityList.replaceChildren();
 
-  // Show or hide the empty message
-  emptyMessage.style.display = activities.length === 0 ? "block" : "none";
+  // Get the selected category
+  const searchText = searchInput.value.toLowerCase().trim();
 
-  // Loop through every activity
-  activities.forEach(function (activity) {
+  const filteredActivities = activities.filter(function (activity) {
+    return activity.category.toLowerCase().includes(searchText);
+  });
+
+  // Get the selected sorting order
+  const sortOrder = sortFilter.value;
+
+  // Sort activities by date
+  filteredActivities.sort(function (a, b) {
+    if (sortOrder === "newest") {
+      return new Date(b.date) - new Date(a.date);
+    } else {
+      return new Date(a.date) - new Date(b.date);
+    }
+  });
+
+  // Show or hide the empty message
+  emptyMessage.style.display =
+    filteredActivities.length === 0 ? "block" : "none";
+
+  filteredActivities.forEach(function (activity) {
     // Create an activity card
     const card = document.createElement("div");
 
@@ -229,19 +263,15 @@ function renderActivities() {
       // Display normal activity information
 
       const title = document.createElement("h3");
-
       title.textContent = activity.category;
 
       const quantity = document.createElement("p");
-
       quantity.textContent = activity.quantity + " " + activity.unit;
 
       const date = document.createElement("p");
-
       date.textContent = activity.date;
 
       const note = document.createElement("p");
-
       note.textContent = activity.note || "No note";
 
       // Create Edit button
